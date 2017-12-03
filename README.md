@@ -2,6 +2,10 @@
 
 A library for uploading and downloading files from remote server via WinSCP Assembly Library. Extremely fast, flexible, and easy to use. WinSCPHelper works great on SFTP.
 
+## NuGet Package
+
+[WinSCP Helper](https://www.nuget.org/packages/WinSCPHelper/) - Actual WinSCP library published on NuGet<br/>
+
 ## Getting Started
 
 - Right click on your project and select "Manage NuGet Package". Search for "WinSCPHelper". Install WinSCPHelper on your project.
