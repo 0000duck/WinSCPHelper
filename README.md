@@ -1,4 +1,4 @@
-<img src="http://deepmirage.com/img/winscphelper.png" alt="WinSCPHelper" width="300px"/>
+<img src="http://deepmirage.com/img/winscphelper.png" alt="WinSCPHelper" width="64px"/>
 
 A library for uploading and downloading files from remote server via WinSCP Assembly Library. Extremely fast, flexible, and easy to use. WinSCPHelper works great on SFTP.
 
