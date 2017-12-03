@@ -9,7 +9,7 @@ using WinScpHelper.Common;
 
 namespace WinScpHelper
 {
-    public class WinScpHelper
+    public class WinScpConnection
     {
         public string HostName { get; set; }
         public string Username { get; set; }
@@ -18,9 +18,9 @@ namespace WinScpHelper
         public Protocol ConnectionProtocol { get; set; }
         public bool HasNoFingerprint { get; set; }
 
-        public WinScpHelper() { }
+        public WinScpConnection() { }
 
-        public WinScpHelper(string hostname, string username, string password, Protocol protocol = Protocol.Sftp, bool hasNoFingerprint = true)
+        public WinScpConnection(string hostname, string username, string password, Protocol protocol = Protocol.Sftp, bool hasNoFingerprint = true)
         {
             this.ConnectionProtocol = protocol;
             this.HostName = hostname;
@@ -48,7 +48,7 @@ namespace WinScpHelper
         /// Create connection session
         /// </summary>
         /// <param name="showProgress"></param>
-        public Session CreateConnection(bool showProgress = false)
+        public Session Open(bool showProgress = false)
         {
             try
             {
@@ -75,7 +75,7 @@ namespace WinScpHelper
         /// <param name="session"></param>
         /// <param name="sourceLocalLocation"></param>
         /// <param name="targetRemoteLocation"></param>
-        public void UploadFiles(Session session, string sourceLocalLocation, string targetRemoteLocation)
+        public void Upload(Session session, string sourceLocalLocation, string targetRemoteLocation)
         {
             TransferOperationResult transferResult;
             transferResult = session.PutFiles(sourceLocalLocation, targetRemoteLocation);
@@ -128,7 +128,7 @@ namespace WinScpHelper
         /// </summary>
         /// <param name="session"></param>
         /// <param name="sourceRemoteLocation"></param>
-        public void DeleteFile(Session session, string sourceRemoteLocation)
+        public void Delete(Session session, string sourceRemoteLocation)
         {
             var removalResult = session.RemoveFiles(sourceRemoteLocation);
 
@@ -144,7 +144,7 @@ namespace WinScpHelper
         /// <param name="session"></param>
         /// <param name="sourceRemoteLocation"></param>
         /// <param name="targetLocalLocation"></param>
-        public List<CurrentFile> DownloadFiles(Session session, string sourceRemoteLocation, string targetLocalLocation = "")
+        public List<CurrentFile> Download(Session session, string sourceRemoteLocation, string targetLocalLocation = "")
         {
             try
             {                

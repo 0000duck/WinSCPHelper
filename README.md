@@ -26,10 +26,10 @@ namespace WinScpPlayground
     {
         static void Main(string[] args)
         {
-            WinScpWrapper winScpWrapper = new WinScpWrapper("hostname", "sftpusername", "sftppassword");
-            var currentSession = winScpWrapper.CreateConnection();
+            WinScpConnection winScpConnection = new WinScpConnection("hostname", "sftpusername", "sftppassword");
+            var currentSession = winScpConnection.Open();
 
-            var currentList = winScpWrapper.DownloadFiles(currentSession, "/var/www/myremotedirectory",
+            var currentList = winScpConnection.Download(currentSession, "/var/www/myremotedirectory",
                                         @"C:\mytargetfolder");
 
             //for verification - display names of downloaded file
@@ -44,9 +44,9 @@ namespace WinScpPlayground
 - You can also download a single file by doing this
 
 ```c#
-WinScpWrapper winScpWrapper = new WinScpWrapper("hostname", "sftpusername", "sftppassword");
-var currentSession = winScpWrapper.CreateConnection();
-winScpWrapper.DownloadFiles(currentSession, "/var/www/myremotedirectory/remotefile.jpg", @"C:\mytargetfolder\localfile.jpg");
+WinScpConnection winScpConnection = new WinScpConnection("hostname", "sftpusername", "sftppassword");
+var currentSession = winScpConnection.Open();
+winScpConnection.Download(currentSession, "/var/www/myremotedirectory/remotefile.jpg", @"C:\mytargetfolder\localfile.jpg");
 ```
 
 - Here is a snippet in uploading files to your target remote directory
@@ -65,8 +65,9 @@ namespace WinScpPlayground
     {
         static void Main(string[] args)
         {
-            WinScpWrapper winScpWrapper = new WinScpWrapper("hostname", "sftpusername", "sftppassword");
-            winScpWrapper.UploadFiles(currentSession, @"C:\localfolderforupload\*.*", "/var/www/myremotedirectory/*.*");
+            WinScpConnection winScpConnection = new WinScpConnection("hostname", "sftpusername", "sftppassword");
+            var currentSession = winScpConnection.Open();
+            winScpConnection.Upload(currentSession, @"C:\localfolderforupload\*.*", "/var/www/myremotedirectory/*.*");
         }
     }
 }
@@ -74,9 +75,9 @@ namespace WinScpPlayground
 - Uploading a single file is also doable. Like so,
 
 ```c#
-WinScpWrapper winScpWrapper = new WinScpWrapper("hostname", "sftpusername", "sftppassword");
-var currentSession = winScpWrapper.CreateConnection();
-winScpWrapper.UploadFiles(currentSession, @"C:\localfolderforupload\localfile.jpg", "/var/www/myremotedirectory/remotefile.jpg");
+WinScpConnection winScpConnection = new WinScpConnection("hostname", "sftpusername", "sftppassword");
+var currentSession = winScpConnection.Open();
+winScpConnection.Upload(currentSession, @"C:\localfolderforupload\localfile.jpg", "/var/www/myremotedirectory/remotefile.jpg");
 ```
 
 - That should be it.
